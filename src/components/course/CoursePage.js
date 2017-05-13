@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as courseActions from '../../actions/courseActions';
+import CourseList from './CourseList';
 
 class CoursePage extends React.Component {
     constructor(props, context){
@@ -11,8 +12,6 @@ class CoursePage extends React.Component {
         this.state = {
             course: { title: '' }
         };
-        this.onTitleChange = this.onTitleChange.bind(this);
-        this.onClickSave = this.onClickSave.bind(this);
     }
 
     onTitleChange(e){
@@ -26,15 +25,12 @@ class CoursePage extends React.Component {
         this.state.course.title = '';
     }
 
-    courseRow(course, index){
-        return <div key={index}>{course.title}</div>;
-    }
-
     render(){
         return (
             <div>
                 <h1>Courses page</h1>
-                {this.props.courses.map(this.courseRow)}
+                <CourseList courses={this.props.courses}/>
+
                 <h2>Add course</h2>
                 <input
                     type="text"
