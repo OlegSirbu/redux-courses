@@ -1,64 +1,55 @@
-import React, { PropTypes } from 'react';
-import {Link} from 'react-router';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {PropTypes} from 'react';
+import {browserHistory} from 'react-router';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 import * as courseActions from '../../actions/courseActions';
 import CourseList from './CourseList';
 
 class CoursePage extends React.Component {
-    constructor(props, context){
-        super(props, context);
+  constructor(props, context){
+    super(props, context);
 
-        this.state = {
-            course: { title: '' }
-        };
-    }
+    this.state = {
+        course: { title: '' }
+    };
 
-    onTitleChange(e){
-        const course = this.state.course;
-        course.title = e.target.value;
-        this.setState({ course:course });
-    }
+    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+  }
 
-    onClickSave(){
-        this.props.actions.createCourse(this.state.course);
-        this.state.course.title = '';
-    }
+  redirectToAddCoursePage() {
+    browserHistory.push('/course')
+  }
 
-    render(){
-        return (
-            <div>
-                <h1>Courses page</h1>
-                <CourseList courses={this.props.courses}/>
+  render() {
+    return (
+      <div>
+        <h1>Courses page</h1>
+        <input
+          type="submit"
+          value="Add Course"
+          onClick={this.redirectToAddCoursePage}
+        />
 
-                <h2>Add course</h2>
-                <input
-                    type="text"
-                    onChange={this.onTitleChange}
-                    value={this.state.course.title}
-                />
-                <input
-                    type="submit"
-                    value="Save"
-                    onClick={this.onClickSave}
-                />
-            </div>
-        );
-    }
+        <CourseList courses={this.props.courses}/>
+
+      </div>
+    );
+  }
 }
 
-CoursePage.propTypes =  {
-    courses: PropTypes.array.isRequired,
-    actions: PropTypes.object.isRequired
+CoursePage.propTypes = {
+  courses: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps){
-    return {
-        courses: state.courses
-    };
+function mapStateToProps(state, ownProps) {
+  return {
+    courses: state.courses
+  };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(courseActions, dispatch)
   };
