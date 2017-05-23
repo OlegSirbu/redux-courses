@@ -24,14 +24,22 @@ class CoursePage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Courses page</h1>
-        <input
-          type="submit"
-          value="Add Course"
-          onClick={this.redirectToAddCoursePage}
-        />
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            Courses page
+          </div>
+          <div className="panel-body">
+            <input
+              type="submit"
+              value="Add Course"
+              className="btn btn-primary col-xs-2"
+              onClick={this.redirectToAddCoursePage}
+            />
 
-        <CourseList courses={this.props.courses}/>
+            <CourseList courses={this.props.courses}/>
+          </div>
+        </div>
+
 
       </div>
     );

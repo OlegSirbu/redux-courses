@@ -9,11 +9,11 @@ const SelectInput = ({name, label, onChange, defaultOptions, value, error, optio
         <div className={wrapperClasses} >
             <label htmlFor={name}>{label}</label>
             <div className='field'>
-                <select 
+                <select
                     name={name}
                     value={value}
                     onChange={onChange}
-                    className='form-group'
+                    className='form-control'
                 >
                 <options value="">{defaultOptions}</options>
                 {options.map((option)=> {
