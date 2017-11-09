@@ -39,8 +39,7 @@ class CoursePage extends React.Component {
             <CourseList courses={this.props.courses}/>
           </div>
         </div>
-
-
+        
       </div>
     );
   }
